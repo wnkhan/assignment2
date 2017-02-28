@@ -5,6 +5,51 @@
 #include "integer.h"
 #include "bst.h"
 
+int maxDepth(bstNode *node)
+{
+	if(node == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		int ld = maxDepth(node->left);
+		int rd = maxDepth(node->right);
+
+		if (ld > rd)
+		{
+			return (ld+1);
+		}
+		else 
+		{
+			return (rd+1);
+		}
+	}
+}
+
+int minDepth(bstNode *node)
+{
+	if(node == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		int ld = minDepth(node->left);
+		int rd = minDepth(node->right);
+
+		if (ld < rd)
+		{
+			return (ld+1);
+		}
+		else 
+		{
+			return (rd+1);
+		}
+	}
+}
+
+
 bst *newBST(void (*d)(FILE *,void *),int (*c)(void *,void *))
 {
 	bst *tree = malloc(sizeof(bst));
@@ -156,6 +201,18 @@ void pruneBSTNode(bstNode *n)
 		n = swapToLeafBSTNode(n);
 		pruneBSTNode(n);
 	}	
+}
+
+void statisticsBST(bst *tree,FILE *fp)
+{
+	bstNode *n = tree->root;
+
+	int min = minDepth(n);
+	int max = maxDepth(n);
+	
+	fprintf(fp, "Min depth = %d\n", min);
+	fprintf(fp, "Max depth = %d\n", max);
+	
 }
 
 void displayBST(FILE *fp,bst *tree) { //displays tree, calls display function to display node value

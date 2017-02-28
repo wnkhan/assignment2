@@ -18,13 +18,7 @@ int main(){
 	insertBST(a, newInteger(12));
 	displayBST(stdout,a);
 	
-	bstNode *b = findBSTNode(a,newInteger(2));
-
-	b = swapToLeafBSTNode(b);
-	pruneBSTNode(b);
-	a->display(stdout,b->value);
-	printf("\n");
-	displayBST(stdout,a);
+	statisticsBST(a,stdout);
 
 
 
