@@ -17,15 +17,14 @@ int main(){
 	insertBST(a, newInteger(11));
 	insertBST(a, newInteger(12));
 	displayBST(stdout,a);
-	if(findBST(a,newInteger(2)))
-	{
-		printf("\nFound\n");
-	}
-	else
-	{
-		printf("\nNot Found\n");
-	}
+	
+	bstNode *b = findBSTNode(a,newInteger(2));
 
+	b = swapToLeafBSTNode(b);
+	pruneBSTNode(b);
+	a->display(stdout,b->value);
+	printf("\n");
+	displayBST(stdout,a);
 
 
 

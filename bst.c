@@ -64,44 +64,99 @@ int findBST(bst *tree,void *Value)
 	
 	while(x != NULL)
 	{
-		tree->display(stdout,x->value);
-		printf(" ");
-		tree->display(stdout,Value);
-		printf("\n");
-		if(x->value == Value)
-		{
-			printf("I'm in\n");
+		if(tree->compare(x->value,Value)==0)
+		{	
 			return 1;
 		}
 		else if(tree->compare(Value,x->value) > 0 )
 		{
 			x = x->right;
-			printf("Going right\n");
-			tree->display(stdout,x->value);
-			printf("\n");
 		}
 		else
 		{
-			printf("Going left\n");
 			x = x->left;
 		}
 	}
 	return 0;
 }
 
-// void pruneBSTNode(bstNode *n)
-// {
-// 	if(tree->compare(n->value,n->parent->value) > 0 )
-// 	{
-// 		n->parent->right == NULL;
-// 		free(n);
-// 	}
-// 	else
-// 	{
-// 		n->parent->left == NULL;
-// 		free(n);
-// 	}
-// }
+bstNode *findBSTNode(bst *tree,void *Value)
+{
+
+	bstNode *x = tree->root;
+	
+	while(x != NULL)
+	{
+		if(tree->compare(x->value,Value)==0)
+		{	
+			return x;
+		}
+		else if(tree->compare(Value,x->value) > 0 )
+		{
+			x = x->right;
+		}
+		else
+		{
+			x = x->left;
+		}
+	}
+	return 0;
+}
+
+bstNode *swapToLeafBSTNode(bstNode *swap)
+{
+	void *temp = NULL;
+	bstNode *current = swap;
+
+	if(swap->left == NULL && swap->right == NULL)
+	{
+		return swap;
+	}
+	else if(swap->right != NULL)
+	{
+		current = swap->right;
+		while(current->left != NULL)
+		{
+			current = current ->left;
+		}
+		temp = current->value;
+		current->value = swap->value;
+		swap->value = temp;
+		return current;
+	}
+	else
+	{
+		current = swap->left;
+		while(current->right != NULL)
+		{
+			current = current ->right;
+		}
+		temp = current->value;
+		current->value = swap->value;
+		swap->value = temp;
+		return current;
+	}
+}
+
+void pruneBSTNode(bstNode *n)
+{
+	if(n->right == NULL && n->left == NULL)
+	{
+		if (n->parent->right == n)
+		{
+			n->parent->right = NULL;
+		}
+		else
+		{
+			n->parent->left = NULL;
+		}
+	}
+	else
+	{
+		n = swapToLeafBSTNode(n);
+		pruneBSTNode(n);
+	}	
+}
 
 void displayBST(FILE *fp,bst *tree) { //displays tree, calls display function to display node value
 	if(tree->root == NULL) return;
