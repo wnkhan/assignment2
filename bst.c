@@ -4,51 +4,7 @@
 #include "queue.h"
 #include "integer.h"
 #include "bst.h"
-
-int maxDepth(bstNode *node)
-{
-	if(node == NULL)
-	{
-		return 0;
-	}
-	else
-	{
-		int ld = maxDepth(node->left);
-		int rd = maxDepth(node->right);
-
-		if (ld > rd)
-		{
-			return (ld+1);
-		}
-		else 
-		{
-			return (rd+1);
-		}
-	}
-}
-
-int minDepth(bstNode *node)
-{
-	if(node == NULL)
-	{
-		return 0;
-	}
-	else
-	{
-		int ld = minDepth(node->left);
-		int rd = minDepth(node->right);
-
-		if (ld < rd)
-		{
-			return (ld+1);
-		}
-		else 
-		{
-			return (rd+1);
-		}
-	}
-}
-
+#include "max_min.h"
 
 bst *newBST(void (*d)(FILE *,void *),int (*c)(void *,void *))
 {
@@ -148,7 +104,7 @@ bstNode *findBSTNode(bst *tree,void *Value)
 	return 0;
 }
 
-bstNode *swapToLeafBSTNode(bstNode *swap)
+bstNode *swapToLeafBSTNode(bstNode *swap)  //Fix Me Bitch!!!!
 {
 	void *temp = NULL;
 	bstNode *current = swap;
@@ -183,7 +139,7 @@ bstNode *swapToLeafBSTNode(bstNode *swap)
 	}
 }
 
-void pruneBSTNode(bstNode *n)
+void pruneBSTNode(bstNode *n)   //Fix Me Bitch!!!!
 {
 	if(n->right == NULL && n->left == NULL)
 	{
