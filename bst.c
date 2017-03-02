@@ -104,7 +104,7 @@ bstNode *findBSTNode(bst *tree,void *Value)
 	return 0;
 }
 
-bstNode *swapToLeafBSTNode(bstNode *swap)  //Fix Me Bitch!!!!
+bstNode *swapToLeafBSTNode(bstNode *swap) 
 {
 	void *temp = NULL;
 	bstNode *current = swap;
@@ -113,7 +113,7 @@ bstNode *swapToLeafBSTNode(bstNode *swap)  //Fix Me Bitch!!!!
 	{
 		return swap;
 	}
-	else if(swap->right != NULL)
+	else if(swap == swap->parent->left && swap->right != NULL)
 	{
 		current = swap->right;
 		while(current->left != NULL)
@@ -123,7 +123,7 @@ bstNode *swapToLeafBSTNode(bstNode *swap)  //Fix Me Bitch!!!!
 		temp = current->value;
 		current->value = swap->value;
 		swap->value = temp;
-		return current;
+		swapToLeafBSTNode(current);
 	}
 	else
 	{
@@ -135,28 +135,31 @@ bstNode *swapToLeafBSTNode(bstNode *swap)  //Fix Me Bitch!!!!
 		temp = current->value;
 		current->value = swap->value;
 		swap->value = temp;
-		return current;
+		swapToLeafBSTNode(current);
 	}
 }
 
-void pruneBSTNode(bstNode *n)   //Fix Me Bitch!!!!
+void pruneBSTNode(bst *tree,bstNode *n)
 {
-	if(n->right == NULL && n->left == NULL)
+	if (n->parent == NULL && n->right == NULL && n->left == NULL)
+	{
+		n = NULL;
+	}
+	else if (tree->root->right == NULL && tree->root->left == NULL && n == tree->root)
+	{
+		tree->root = tree->root->parent = NULL;
+	}
+	else if (n->left == NULL && n->right == NULL)
 	{
 		if (n->parent->right == n)
 		{
 			n->parent->right = NULL;
 		}
-		else
+		else if (n->parent->left == n)
 		{
 			n->parent->left = NULL;
 		}
 	}
-	else
-	{
-		n = swapToLeafBSTNode(n);
-		pruneBSTNode(n);
-	}	
 }
 
 void statisticsBST(bst *tree,FILE *fp)

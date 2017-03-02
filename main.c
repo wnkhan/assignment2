@@ -19,10 +19,12 @@ int main(){
 	insertBST(a, newInteger(5));
 	insertBST(a, newInteger(6));
 	displayBST(stdout,a);
-	statisticsBST(a,stdout);
-	bstNode *b = findBSTNode(a,newInteger(4));
-	swapToLeafBSTNode(b);
-	pruneBSTNode(b);
+	
+	bstNode *b = findBSTNode(a,newInteger(8));
+	b = swapToLeafBSTNode(b);
+	pruneBSTNode(a,b);
+	a->display(stdout,b->value);
+
 	displayBST(stdout,a);
 	statisticsBST(a,stdout);
 
