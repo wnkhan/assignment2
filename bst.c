@@ -19,6 +19,8 @@ bst *newBST(void (*d)(FILE *,void *),int (*c)(void *,void *))
 
 bstNode *insertBST(bst *tree, void *Value)
 {
+	tree->size++;
+
 	//New Node
 	bstNode *z = malloc(sizeof(bstNode));
 	z->value = Value;
@@ -113,19 +115,7 @@ bstNode *swapToLeafBSTNode(bstNode *swap)
 	{
 		return swap;
 	}
-	else if(swap == swap->parent->left && swap->right != NULL)
-	{
-		current = swap->right;
-		while(current->left != NULL)
-		{
-			current = current ->left;
-		}
-		temp = current->value;
-		current->value = swap->value;
-		swap->value = temp;
-		swapToLeafBSTNode(current);
-	}
-	else
+	else if(swap->left != NULL)
 	{
 		current = swap->left;
 		while(current->right != NULL)
@@ -137,10 +127,23 @@ bstNode *swapToLeafBSTNode(bstNode *swap)
 		swap->value = temp;
 		swapToLeafBSTNode(current);
 	}
+	else if(swap->right!= NULL)
+	{
+		current = swap->right;
+		while(current->left != NULL)
+		{
+			current = current ->left;
+		}
+		temp = current->value;
+		current->value = swap->value;
+		swap->value = temp;
+		swapToLeafBSTNode(current);
+	}
 }
 
 void pruneBSTNode(bst *tree,bstNode *n)
 {
+	tree->size--;
 	if (n->parent == NULL && n->right == NULL && n->left == NULL)
 	{
 		n = NULL;
@@ -160,6 +163,11 @@ void pruneBSTNode(bst *tree,bstNode *n)
 			n->parent->left = NULL;
 		}
 	}
+}
+
+int sizeBST(bst *tree) 
+{ 
+	return tree->size;
 }
 
 void statisticsBST(bst *tree,FILE *fp)
