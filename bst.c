@@ -139,6 +139,7 @@ bstNode *swapToLeafBSTNode(bstNode *swap)
 		swap->value = temp;
 		swapToLeafBSTNode(current);
 	}
+	return swap;
 }
 
 void pruneBSTNode(bst *tree,bstNode *n)

@@ -10,8 +10,10 @@ int main(){
 
 	vbst *a = newVBST(displayInteger,compareInteger);
 	insertVBST(a, newInteger(10));
-	
+	insertVBST(a, newInteger(3));
+	insertVBST(a, newInteger(2));
+	insertVBST(a, newInteger(4));
 	displayVBST(stdout,a);
-
+	printf("%d size \n", wordsVBST(a));
 	return 0;
 }
