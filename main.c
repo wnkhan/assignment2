@@ -5,15 +5,25 @@
 #include "integer.h"
 #include "bst.h"
 #include "vbst.h"
+#include "max_min.h"
 
 int main(){
 
-	vbst *a = newVBST(displayInteger,compareInteger);
-	insertVBST(a, newInteger(10));
-	insertVBST(a, newInteger(3));
-	insertVBST(a, newInteger(2));
-	insertVBST(a, newInteger(4));
-	displayVBST(stdout,a);
-	printf("%d size \n", wordsVBST(a));
+	bst *a = newBST(displayInteger,compareInteger);
+	insertBST(a, newInteger(5));
+	insertBST(a, newInteger(4));
+	insertBST(a, newInteger(2));
+	insertBST(a, newInteger(3));
+	insertBST(a, newInteger(1));
+	insertBST(a, newInteger(18));
+
+	bstNode *temp = findBSTNode(a,newInteger(4));
+	temp = swapToLeafBSTNode(temp);
+	pruneBSTNode(a,temp);
+
+	displayBST(stdout,a);
+	statisticsBST(a,stdout);
+	
+	
 	return 0;
 }

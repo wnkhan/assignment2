@@ -103,7 +103,7 @@ bstNode *findBSTNode(bst *tree,void *Value)
 			x = x->left;
 		}
 	}
-	return 0;
+	return x;
 }
 
 bstNode *swapToLeafBSTNode(bstNode *swap) 
@@ -115,31 +115,38 @@ bstNode *swapToLeafBSTNode(bstNode *swap)
 	{
 		return swap;
 	}
-	else if(swap->left != NULL)
+	else if (numberOfChildren(swap) == 2)
 	{
-		current = swap->left;
-		while(current->right != NULL)
+	
+		if(swap->left != NULL)
 		{
-			current = current ->right;
+			current = swap->left;
+			while(current->right != NULL)
+			{
+				current = current ->right;
+			}
+			temp = current->value;
+			current->value = swap->value;
+			swap->value = temp;
+			return swapToLeafBSTNode(current);
 		}
-		temp = current->value;
-		current->value = swap->value;
-		swap->value = temp;
-		swapToLeafBSTNode(current);
-	}
-	else if(swap->right!= NULL)
+		else
+		{
+			current = swap->right;
+			while(current->left != NULL)
+			{
+				current = current ->left;
+			}
+			temp = current->value;
+			current->value = swap->value;
+			swap->value = temp;
+			return swapToLeafBSTNode(current);
+		}
+	}	
+	else
 	{
-		current = swap->right;
-		while(current->left != NULL)
-		{
-			current = current ->left;
-		}
-		temp = current->value;
-		current->value = swap->value;
-		swap->value = temp;
-		swapToLeafBSTNode(current);
-	}
-	return swap;
+		return swap;
+	}	
 }
 
 void pruneBSTNode(bst *tree,bstNode *n)
@@ -149,7 +156,7 @@ void pruneBSTNode(bst *tree,bstNode *n)
 	{
 		n = NULL;
 	}
-	else if (tree->root->right == NULL && tree->root->left == NULL && n == tree->root)
+	else if (tree->root->right == NULL && tree->root->left == NULL && n == tree->root)  // n is a leaf
 	{
 		tree->root = tree->root->parent = NULL;
 	}
@@ -163,6 +170,36 @@ void pruneBSTNode(bst *tree,bstNode *n)
 		{
 			n->parent->left = NULL;
 		}
+	}
+	else
+	{
+		if (n->right != NULL)  //n has a right child
+		{
+			if (n == n->parent->right)  //n is a right child
+			{
+				n->parent->right = n->right;
+				n->right = NULL;
+			}
+			else						//n is a left child
+			{
+				n->parent->left = n->right;
+				n->right = NULL;
+			}
+		}
+		else  //n has a left child
+		{
+			if (n == n->parent->right)  //n is a right child
+			{
+				n->parent->right = n->left;
+				n->left = NULL;
+			}
+			else						//n is a left child
+			{
+				n->parent->left = n->left;
+				n->left = NULL;
+			}
+		}
+		
 	}
 }
 
@@ -248,3 +285,4 @@ void displayBST(FILE *fp,bst *tree) { //displays tree, calls display function to
 		}
 	}
 }
+

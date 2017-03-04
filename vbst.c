@@ -89,14 +89,29 @@ int findVBST(vbst *vtree,void *v)
 	}
 }
 
+void deleteVBST(vbst *vtree, void *v)
+{
+	vbstVal *newVal = newVBSTVal(vtree->display,vtree->compare);
+	newVal->value = v;
+	bstNode *temp = findBSTNode(vtree->tree, newVal);
+	temp = swapToLeafBSTNode(temp);
+	pruneBSTNode(vtree->tree, temp);
+	free(temp);
+	free(newVal);
+}
+
 int sizeVBST(vbst *vtree)
 {
 	return vtree->size;
 }
 
-int wordsVBST(vbst *vtree)
+int wordsVBST(vbst *vtree)  //Fix Me!!!!
 {
 	return vtree->words;
+}
+void statisticsVBST(vbst *vtree, FILE *fp)
+{
+	statisticsBST(vtree->tree, fp);
 }
 
 void displayVBST(FILE *fp, vbst *vtree)

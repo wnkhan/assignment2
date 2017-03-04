@@ -22,5 +22,5 @@
     extern int wordsVBST(vbst *);
     extern void statisticsVBST(vbst *,FILE *);
     extern void displayVBST(FILE *,vbst *);
-    extern void checkVBST(vbst *);               //optional
+    // extern void checkVBST(vbst *);               //optional
     #endif

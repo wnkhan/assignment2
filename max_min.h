@@ -5,5 +5,7 @@
 
 extern int maxDepth(bstNode *);
 extern int minDepth(bstNode *);
+extern int numberOfChildrenToParent(bstNode *);
+extern int numberOfChildren(bstNode *);
 
 #endif

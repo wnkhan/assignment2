@@ -44,3 +44,53 @@ int minDepth(bstNode *node)
 		}
 	}
 }
+
+int numberOfChildrenToParent(bstNode *n)
+{
+	if (n == n->parent) //Node is root
+	{
+		return -1;
+	}
+	else if(n == n->parent->left) // Node is left child
+	{
+		if (n->parent->right == NULL)
+		{
+			return 1;
+		}
+		else
+		{
+			return 2;
+		}
+	}
+	else
+	{
+		if(n->parent->left == NULL)
+		{
+			return 1;
+		}
+		else
+		{
+			return 2;
+		}
+	}
+}
+
+int numberOfChildren(bstNode *n)
+{
+	if (n->left != NULL && n->right != NULL)
+	{
+		return 2;
+	}
+	else if (n->left != NULL)
+	{
+		return 1;
+	}
+	else if (n->right != NULL)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
