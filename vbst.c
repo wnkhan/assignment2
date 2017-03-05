@@ -31,9 +31,8 @@ static void displayVal(FILE *fp, void *val)
 	v->display(fp,v->value);
 	if (v->freq >1)
 	{
-		fprintf(stdout," -%d",v->freq);
+		fprintf(fp," -%d",v->freq);
 	}
-
 }
 
 static int vbstCompare(void *a, void *b)
