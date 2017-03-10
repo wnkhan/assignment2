@@ -11,12 +11,16 @@
 int main(){
 
 	rbt *a = newRBT(displayInteger,compareInteger);
+	insertRBT(a, newInteger(0));
 	insertRBT(a, newInteger(1));
+	insertRBT(a, newInteger(0));
+	insertRBT(a, newInteger(8));
+	insertRBT(a, newInteger(7));
+	insertRBT(a, newInteger(9));
 	insertRBT(a, newInteger(2));
+	insertRBT(a, newInteger(4));
 	insertRBT(a, newInteger(3));
-	insertRBT(a, newInteger(-1));
-	insertRBT(a, newInteger(-2));
-	insertRBT(a, newInteger(-3));
+	insertRBT(a, newInteger(5));
 	insertRBT(a, newInteger(6));
 	
 	displayRBT(stdout,a);

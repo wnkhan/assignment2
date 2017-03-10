@@ -20,11 +20,19 @@ void modifystring(char *s)
 		{
 			memmove(s+i,s+(i+1),size-i);
 			i--;
+			size--;
 		}
+		// else if (isdigit(s[i]))
+		// {
+		// 	memmove(s+i,s+(i+1),size-i);
+		// 	i--;
+		// 	size--;
+		// }
 		else if(ispunct(s[i]))
 		{
 			memmove(s+i,s+(i+1),size-i);
 			i--;
+			size--;
 		}
 	}
 }
