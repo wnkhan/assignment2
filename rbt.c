@@ -74,8 +74,16 @@ void insertRBT(rbt *redtree,void *v)
 
 	if (redtree->tree->root == temp)
 	{
-		temp = insertBST(redtree->tree,newVal);
-		redtree->size++;
+
+		if(temp== NULL )
+		{
+			temp = insertBST(redtree->tree,newVal);
+			redtree->size++;
+		}
+		else
+		{
+			((rbtVal *)(temp->value))->freq++;
+		}
 		
 		return;
 	}
@@ -90,7 +98,6 @@ void insertRBT(rbt *redtree,void *v)
 		newVal->color = 2;
 		redtree->size++;
 		temp = insertBST(redtree->tree,newVal);
-		printf("going into insertion fix up\n");
 		insertionFixUp(redtree->tree,temp);
 	}
 	redtree->words++;
@@ -138,21 +145,18 @@ void insertionFixUp(bst *tree, bstNode *n)
 			{
 				oldParent = p;
 				oldNode = n;
-				printf("FIRST rotate\n");
 				Rotate(tree,n);
-				printf("FIRST rotate\n");
 				n = oldParent;
 				p = oldNode;
 			}
 			((rbtVal *)(p->value))->color = 1;
 			((rbtVal *)(g->value))->color = 2;
-			printf("SECOND rotate\n");
 			Rotate(tree,p);
-			printf("SECOND rotate finished\n");
 			break;
 		}
 	}
 	((rbtVal *)(tree->root->value))->color = 1;
+
 }
 
 int LeftChild(bstNode* n)
@@ -221,7 +225,6 @@ void Rotate(bst *tree, bstNode *n)
 
 	if (n == p->right)
 	{
-		printf("rotate left\n");
 		//This rotates left
 		p->right = nleft;
 		if (nleft != NULL)
@@ -250,11 +253,9 @@ void Rotate(bst *tree, bstNode *n)
 				n->parent->right = n;
 			}
 		}
-		printf("end rotate left\n");
 	}
 	else
 	{
-		printf("rotate right\n");
 		//This rotates right
 		p->left = nright;
 		if (nright != NULL)
@@ -283,6 +284,5 @@ void Rotate(bst *tree, bstNode *n)
 				n->parent->right = n;
 			}
 		}
-		printf("end rotate right\n");
 	}
 }
