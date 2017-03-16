@@ -250,26 +250,27 @@ void displayBST(FILE *fp,bst *tree) { //displays tree, calls display function to
 			}
 			if(n->right==NULL && n->left==NULL)
 			{
-				fprintf(fp, "=\"");
+				fprintf(fp, "=");
 			}
-			else
-			{
-				fprintf(fp, "\"");
-			}
+//			else
+//			{
+//				fprintf(fp, "\"");
+//			}
+
 			tree->display(fp,n->value);
-			fprintf(fp, "\"");
+
 			if(n != tree->root)
 			{
-				fprintf(fp, "(\"");
+				fprintf(fp, "(");
 				tree->display(fp,n->parent->value);
 
 				if(tree->compare(n->value, n->parent->value)<0)
 				{
-					fprintf(fp, "\")-l\t");
+					fprintf(fp, ")-l\t");
 				}
 				else
 				{
-					fprintf(fp, "\")-r\t");
+					fprintf(fp, ")-r\t");
 				}
 			}
 			else

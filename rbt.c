@@ -28,12 +28,22 @@ typedef struct rbtVal
 static void displayRBTVal(FILE *fp, void *val)
 {
 	rbtVal *v = val;
+	fprintf(fp, "\"");
 	v->display(fp,v->value);
+	fprintf(fp, "\"");
 	if (v->freq >1)
 	{
-		fprintf(fp," -%d",v->freq);
+		fprintf(fp,"-%d",v->freq);
 	}
-	fprintf(fp, "-%d", v->color);
+
+	if (v->color == 1)
+	{
+		fprintf(fp, "-B");
+	}
+	else
+	{
+		fprintf(fp,"-R");
+	}
 }
 
 static int compareRBTVal(void *a, void *b)
@@ -79,10 +89,12 @@ void insertRBT(rbt *redtree,void *v)
 		{
 			temp = insertBST(redtree->tree,newVal);
 			redtree->size++;
+			redtree->words++;
 		}
 		else
 		{
 			((rbtVal *)(temp->value))->freq++;
+			redtree->words++;
 		}
 		
 		return;
@@ -92,16 +104,29 @@ void insertRBT(rbt *redtree,void *v)
 	{
 	
 		((rbtVal *)(temp->value))->freq++;
+		redtree->words++;
+
 	}
 	else
 	{
-		newVal->color = 2;
+		newVal->color = 2;  //Is this correct for coloring red?
 		redtree->size++;
+		redtree->words++;
 		temp = insertBST(redtree->tree,newVal);
 		insertionFixUp(redtree->tree,temp);
 	}
-	redtree->words++;
 
+}
+int findRBT(rbt *rtree, void *val)
+{
+	rbtVal *newVal = newRBTVal(rtree->display,rtree->compare);
+	newVal->value = val;
+	return findBST(rtree->tree,newVal);
+}
+
+void deleteRBT(rbt *rtree, void *v)
+{
+	printf("Delete was not a required function");
 }
 
 int sizeRBT(rbt *rtree)
@@ -109,11 +134,27 @@ int sizeRBT(rbt *rtree)
 	return rtree->size;
 }
 
+int wordsRBT(rbt *rtree)
+{
+	return rtree->words;
+}
+
+void statisticsRBT(rbt *rtree,FILE *fp)
+{
+	fprintf(fp,"Words/Phrases: %d\n", rtree->words);
+	fprintf(fp,"Nodes: %d\n", rtree->size);
+	statisticsBST(rtree->tree,fp);
+
+}
+
 void displayRBT(FILE *fp,rbt *redtree)
 {
 	displayBST(fp,redtree->tree);
 }
 
+
+
+//Helper functions
 void insertionFixUp(bst *tree, bstNode *n)
 {	
 	bstNode *p = NULL, *u = NULL, *g = NULL;
