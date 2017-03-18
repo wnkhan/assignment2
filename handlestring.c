@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
 #include "handlestring.h"
 
 
@@ -82,3 +78,16 @@ char* modifyphrase(char *s)
 	return s;
 }
 
+str *getString(FILE *fp)
+{
+	char *read=NULL;
+	if (stringPending(fp))
+	{
+		read = readString(fp);
+	}
+	else
+	{
+		read = readToken(fp);
+	}
+	
+}

@@ -25,7 +25,7 @@ vbstVal *newVBSTVal(void (*d)(FILE *,void *),int (*c)(void *,void *))
 	return nodeVal;
 }
 
-static void displayVal(FILE *fp, void *val)
+static void vbstDisplay(FILE *fp, void *val)
 {
 	vbstVal *v = val;
 	v->display(fp,v->value);
@@ -46,7 +46,7 @@ vbst *newVBST(void (*d)(FILE *,void *),int (*c)(void *,void *))
 {
 	vbst *vtree = malloc(sizeof(vbst));
 
-	vtree->tree = newBST(displayVal,vbstCompare);
+	vtree->tree = newBST(vbstDisplay,vbstCompare);
 	vtree->display = d;
 	vtree->compare = c;
 	vtree->size = 0;

@@ -1,8 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include "scanner.h"
+#include "string.h"
+
 #ifndef _HANDLESTRING_INCLUDED_
 #define _HANDLESTRING_INCLUDED_
 
-void modifystring(char *s);
-char* modifyphrase(char *s);
+extern void modifystring(char *s);
+extern char* modifyphrase(char *s);
+extern str *getString(FILE *);
 
 
 #endif
