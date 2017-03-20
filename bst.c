@@ -103,7 +103,7 @@ bstNode *findBSTNode(bst *tree,void *Value)
 			x = x->left;
 		}
 	}
-	return x;
+	return NULL;
 }
 
 bstNode *swapToLeafBSTNode(bstNode *swap) 

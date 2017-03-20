@@ -28,11 +28,14 @@ vbstVal *newVBSTVal(void (*d)(FILE *,void *),int (*c)(void *,void *))
 static void vbstDisplay(FILE *fp, void *val)
 {
 	vbstVal *v = val;
+	fprintf(fp, "\"");
 	v->display(fp,v->value);
+	fprintf(fp, "\"");
 	if (v->freq >1)
 	{
-		fprintf(fp," -%d",v->freq);
+		fprintf(fp,"-%d",v->freq);
 	}
+
 }
 
 static int vbstCompare(void *a, void *b)
@@ -60,7 +63,7 @@ void insertVBST(vbst *vtree,void *v)
 	newVal->value = v;
 	bstNode *temp = findBSTNode(vtree->tree, newVal);
 	
-	if (findBST(vtree->tree,newVal))
+	if (temp!=NULL)
 	{
 		((vbstVal *)(temp->value))->freq++;
 		vtree->words++;
@@ -69,6 +72,7 @@ void insertVBST(vbst *vtree,void *v)
 	{
 		insertBST(vtree->tree,newVal);
 		vtree->size++;
+		vtree->words++;
 	}
 }
 
@@ -93,6 +97,8 @@ void deleteVBST(vbst *vtree, void *v)
 	vbstVal *newVal = newVBSTVal(vtree->display,vtree->compare);
 	newVal->value = v;
 	bstNode *temp = findBSTNode(vtree->tree, newVal);
+
+
 	temp = swapToLeafBSTNode(temp);
 	pruneBSTNode(vtree->tree, temp);
 	free(temp);
@@ -110,7 +116,10 @@ int wordsVBST(vbst *vtree)  //Fix Me!!!!
 }
 void statisticsVBST(vbst *vtree, FILE *fp)
 {
-	statisticsBST(vtree->tree, fp);
+	fprintf(fp,"Words/Phrases: %d\n", vtree->words);
+	fprintf(fp,"Nodes: %d\n", vtree->size);
+	statisticsBST(vtree->tree,fp);
+
 }
 
 void displayVBST(FILE *fp, vbst *vtree)

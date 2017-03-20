@@ -78,7 +78,7 @@ char* modifyphrase(char *s)
 	return s;
 }
 
-str *getString(FILE *fp)
+char *pullString(FILE *fp)
 {
 	char *read=NULL;
 	if (stringPending(fp))
@@ -89,5 +89,5 @@ str *getString(FILE *fp)
 	{
 		read = readToken(fp);
 	}
-	
+	return read;
 }

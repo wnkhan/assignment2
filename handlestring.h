@@ -10,7 +10,7 @@
 
 extern void modifystring(char *s);
 extern char* modifyphrase(char *s);
-extern str *getString(FILE *);
+extern char *pullString(FILE *);
 
 
 #endif

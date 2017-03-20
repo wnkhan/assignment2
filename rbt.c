@@ -82,25 +82,25 @@ void insertRBT(rbt *redtree,void *v)
 	newVal->value = v;
 	bstNode *temp = findBSTNode(redtree->tree,newVal);
 
-	if (redtree->tree->root == temp)
-	{
+	// if (redtree->tree->root == temp)
+	// {
 
-		if(temp== NULL )
-		{
-			temp = insertBST(redtree->tree,newVal);
-			redtree->size++;
-			redtree->words++;
-		}
-		else
-		{
-			((rbtVal *)(temp->value))->freq++;
-			redtree->words++;
-		}
+	// 	if(temp== NULL )
+	// 	{
+	// 		temp = insertBST(redtree->tree,newVal);
+	// 		redtree->size++;
+	// 		redtree->words++;
+	// 	}
+	// 	else
+	// 	{
+	// 		((rbtVal *)(temp->value))->freq++;
+	// 		redtree->words++;
+	// 	}
 		
-		return;
-	}
+	// 	return;
+	// }
 
-	if(findBST(redtree->tree,newVal))
+	if(temp!=NULL)
 	{
 	
 		((rbtVal *)(temp->value))->freq++;
@@ -126,6 +126,10 @@ int findRBT(rbt *rtree, void *val)
 
 void deleteRBT(rbt *rtree, void *v)
 {
+	rbt *new = rtree;
+	void *newv = v;
+	free(new);
+	free(newv);
 	printf("Delete was not a required function");
 }
 
@@ -261,7 +265,7 @@ int LinearOrNah(bstNode *n)
 
 void Rotate(bst *tree, bstNode *n)
 {	
-	bstNode *p = n->parent, *g = n->parent->parent;
+	bstNode *p = n->parent;
 	bstNode *nleft = n->left, *nright = n->right;
 
 	if (n == p->right)
