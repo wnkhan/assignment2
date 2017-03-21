@@ -62,7 +62,18 @@ int main(int argc,char *argv[])
 				break;
 
 		case red_black: printf("Do red black stuff\n");
-
+					rbt *rt = newRBT(displayString,stringComparator);
+					word = pullString(dataFile);
+					while(word != NULL)
+					{
+						modifystring(word);
+						str *sword = newString(word);
+						
+						insertRBT(rt,sword);
+						printf("%s\n", word);
+						word = pullString(dataFile);
+					}
+					displayRBT(stdout,rt);
 				break;
 	}
 	fclose(dataFile);
