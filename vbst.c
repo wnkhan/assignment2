@@ -28,9 +28,9 @@ vbstVal *newVBSTVal(void (*d)(FILE *,void *),int (*c)(void *,void *))
 static void vbstDisplay(FILE *fp, void *val)
 {
 	vbstVal *v = val;
-	fprintf(fp, "\"");
+	// fprintf(fp, "\"");
 	v->display(fp,v->value);
-	fprintf(fp, "\"");
+	// fprintf(fp, "\"");
 	if (v->freq >1)
 	{
 		fprintf(fp,"-%d",v->freq);

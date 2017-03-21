@@ -57,11 +57,8 @@ int main(int argc,char *argv[])
 			word = pullString(dataFile);
 			while(word != NULL)
 			{
-				modifystring(word);
 				str *sword = newString(word);
-				
 				insertVBST(vt,sword);
-				// printf("%s\n", word);
 				word = pullString(dataFile);
 			}
 			//Stops building tree
@@ -76,7 +73,6 @@ int main(int argc,char *argv[])
 				if (strcmp(word,"i")==0)
 				{
 					word = pullString(commandFile);
-					modifystring(word);
 					str *sword = newString(word);
 					insertVBST(vt,sword);
 
@@ -114,18 +110,55 @@ int main(int argc,char *argv[])
 
 			// printf("Do red black stuff\n");
 			//Builds tree
+
 			word = pullString(dataFile);
 			while(word != NULL)
 			{
-				modifystring(word);
 				str *sword = newString(word);
-				
 				insertRBT(rt,sword);
-				// printf("%s\n", word);
 				word = pullString(dataFile);
 			}
 			//Stops building tree
-			
+			//Executes commands
+
+			commandFile = fopen(commands,"r");
+
+			word = pullString(commandFile);
+			while(word != NULL)
+			{
+				if (strcmp(word,"i")==0)
+				{
+					word = pullString(commandFile);
+					
+					str *sword = newString(word);
+					insertRBT(rt,sword);
+
+				}
+				else if(strcmp(word,"d")==0)
+				{
+					word = pullString(commandFile);
+					str *sword = newString(word);
+					deleteRBT(rt,sword);
+				}
+				
+				else if (strcmp(word,"s")==0)
+				{
+					displayRBT(stdout,rt);
+				}
+				// else if (strcmp(word,"f")==0)
+				// {
+				// 	//Need to do this
+				// }
+				else
+				{
+					statisticsRBT(rt,stdout);
+				}
+				word = pullString(commandFile);
+			}
+
+			fclose(commandFile);  
+
+			//Ends command execution
 			break;
 		
 

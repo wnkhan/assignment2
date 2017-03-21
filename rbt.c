@@ -28,9 +28,9 @@ typedef struct rbtVal
 static void displayRBTVal(FILE *fp, void *val)
 {
 	rbtVal *v = val;
-	fprintf(fp, "\"");
+	// fprintf(fp, "\"");
 	v->display(fp,v->value);
-	fprintf(fp, "\"");
+	// fprintf(fp, "\"");
 	if (v->freq >1)
 	{
 		fprintf(fp,"-%d",v->freq);
@@ -128,9 +128,14 @@ void deleteRBT(rbt *rtree, void *v)
 {
 	rbt *new = rtree;
 	void *newv = v;
-	free(new);
-	free(newv);
-	printf("Delete was not a required function");
+	new = NULL;
+	newv = NULL;
+	if (new==NULL || newv==NULL)
+	{
+		printf("Delete was not a required function\n");
+	}
+	else
+		printf("Delete was not a required function\n");
 }
 
 int sizeRBT(rbt *rtree)

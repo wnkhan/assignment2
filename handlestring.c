@@ -18,13 +18,19 @@ void modifystring(char *s)
 			i--;
 			size--;
 		}
-		// else if (isdigit(s[i]))
-		// {
-		// 	memmove(s+i,s+(i+1),size-i);
-		// 	i--;
-		// 	size--;
-		// }
+		else if (isdigit(s[i]))
+		{
+			memmove(s+i,s+(i+1),size-i);
+			i--;
+			size--;
+		}
 		else if(ispunct(s[i]))
+		{
+			memmove(s+i,s+(i+1),size-i);
+			i--;
+			size--;
+		}
+		else if (!isalpha(s[i]))
 		{
 			memmove(s+i,s+(i+1),size-i);
 			i--;
@@ -83,11 +89,19 @@ char *pullString(FILE *fp)
 	char *read=NULL;
 	if (stringPending(fp))
 	{
+		
 		read = readString(fp);
+		read = modifyphrase(read);
 	}
 	else
 	{
+		
 		read = readToken(fp);
+		if (read != NULL)
+		{
+			modifystring(read);
+		}
+		
 	}
 	return read;
 }
