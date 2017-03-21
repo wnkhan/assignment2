@@ -98,11 +98,27 @@ void deleteVBST(vbst *vtree, void *v)
 	newVal->value = v;
 	bstNode *temp = findBSTNode(vtree->tree, newVal);
 
-
-	temp = swapToLeafBSTNode(temp);
-	pruneBSTNode(vtree->tree, temp);
-	free(temp);
-	free(newVal);
+	if (temp == NULL)
+	{
+		printf("Value \"");	
+		vbstDisplay(stdout,newVal->value);
+		printf("\"");
+		printf(" not found\n");
+	}
+	else if (((vbstVal *)(temp->value))->freq>1)
+	{
+		((vbstVal *)(temp->value))->freq--;
+		vtree->words--;
+	}
+	else
+	{
+		temp = swapToLeafBSTNode(temp);
+		pruneBSTNode(vtree->tree, temp);
+		// free(temp);
+		// free(newVal);
+		vtree->words--;
+		vtree->size--;
+	}
 }
 
 int sizeVBST(vbst *vtree)

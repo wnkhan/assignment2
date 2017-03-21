@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <string.h>
 #include "bst.h"
 #include "vbst.h"
 #include "rbt.h"
 #include "integer.h"
 #include "string.h"
+#include "comparator.h"
 #include "handlestring.h"
 #include "scanner.h"
 
@@ -16,10 +18,15 @@ int main(int argc,char *argv[])
 {
 	char *type = argv[1];
 	char *data = argv[2];
-	char *commandName = argv[3];
+//	char *commandName = argv[3];
 
-	FILE *dataFile;
-	FILE *commandFile;
+	FILE *dataFile;	
+//	FILE *commandFile;
+
+	if (argc != 4)
+	{
+		printf("Not enough command line arguments\n");
+	}
 
 	enum treeType{vanilla,red_black} kind;
 
@@ -36,20 +43,19 @@ int main(int argc,char *argv[])
 	}
 
 	dataFile = fopen(data,"r");
-	char *read = NULL;
-	char *quote = "\"";
+	
 	switch(kind)
 	{
-		case 0: printf("Do vanilla stuff\n");
-				int count = 0;
-				while(read = readToken(dataFile))
-				{
-					
-				
-				}
+		case vanilla: printf("Do vanilla stuff\n");
+					char *word = pullString(dataFile);
+					while(word != NULL)
+					{
+						printf("%s\n", word);
+						word = pullString(dataFile);
+					}
 				break;
 
-		case 1: printf("Do red black stuff\n");
+		case red_black: printf("Do red black stuff\n");
 
 				break;
 	}

@@ -16,11 +16,17 @@ int main(){
 	insertVBST(a, newInteger(2));
 	insertVBST(a, newInteger(3));
 	insertVBST(a, newInteger(2));
-	
-	statisticsVBST(a,stdout);
-	printf("\n");
-	displayVBST(stdout,a);
 
+	deleteVBST(a, newInteger(1));
+	deleteVBST(a, newInteger(0));
+	deleteVBST(a, newInteger(2));
+	deleteVBST(a, newInteger(3));
+	deleteVBST(a, newInteger(2));
+
+	insertVBST(a, newInteger(3));
+	insertVBST(a, newInteger(2));
+	
+	displayVBST(stdout,a);
 	
 	
 	return 0;
