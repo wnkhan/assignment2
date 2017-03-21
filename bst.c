@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "queue.h"
-#include "integer.h"
+// #include "integer.h"
 #include "bst.h"
 #include "max_min.h"
 

@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 
-#ifndef __STRINGS_INCLUDED__
-#define __STRINGS_INCLUDED__
+#ifndef __STRING_INCLUDED__
+#define __STRING_INCLUDED__
 
 typedef struct str
     {

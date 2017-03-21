@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <string.h>
-#include "strings.h"
+#include "string.h"
 #include "comparator.h"
 #include "integer.h"
 #include "real.h"

@@ -1,0 +1,7 @@
+/mnt/c/Users/genghis/CS201/assignment2
+Fri Mar 10 16:02:04 STD 2017
+bst.c		handlestring.h	max_min.c  rbt.h       vbst.c
+bst.h		integer.c	max_min.h  sll.c       vbst.h
+comparator.c	integer.h	queue.c    sll.h       wnkhan@crimson.ua.edu
+comparator.h	main.c		queue.h    test-bst.c  WORKING
+handlestring.c	makefile	rbt.c	   test-rbt.c

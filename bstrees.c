@@ -47,12 +47,18 @@ int main(int argc,char *argv[])
 	switch(kind)
 	{
 		case vanilla: printf("Do vanilla stuff\n");
+					vbst *vt = newVBST(displayString,stringComparator);
 					char *word = pullString(dataFile);
 					while(word != NULL)
 					{
+						modifystring(word);
+						str *sword = newString(word);
+						
+						insertVBST(vt,sword);
 						printf("%s\n", word);
 						word = pullString(dataFile);
 					}
+					displayVBST(stdout,vt);
 				break;
 
 		case red_black: printf("Do red black stuff\n");

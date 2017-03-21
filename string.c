@@ -3,7 +3,7 @@
 #include <limits.h>
 #include <stdarg.h>
 #include <string.h>
-#include "strings.h"
+#include "string.h"
 
 
 str 
