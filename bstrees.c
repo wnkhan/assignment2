@@ -99,10 +99,16 @@ int main(int argc,char *argv[])
 				{
 					displayVBST(outFile,vt);
 				}
-				// else if (strcmp(word,"f")==0)
-				// {
-				// 	//Need to do this
-				// }
+				else if (strcmp(word,"f")==0)
+				{
+					word = pullString(commandFile);
+					str *sword = newString(word);
+	
+					fprintf(outFile, "Frequency of ");
+
+					displayString(outFile,sword);
+					fprintf(outFile, ": %d\n", findVBST(vt,sword));
+				}
 				else
 				{
 					statisticsVBST(vt,outFile);
@@ -156,10 +162,16 @@ int main(int argc,char *argv[])
 				{
 					displayRBT(outFile,rt);
 				}
-				// else if (strcmp(word,"f")==0)
-				// {
-				// 	//Need to do this
-				// }
+				else if (strcmp(word,"f")==0)
+				{
+					word = pullString(commandFile);
+					str *sword = newString(word);
+	
+					fprintf(outFile, "Frequency of ");
+
+					displayString(outFile,sword);
+					fprintf(outFile, ": %d\n", findRBT(rt,sword));
+				}
 				else
 				{
 					statisticsRBT(rt,outFile);

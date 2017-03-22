@@ -80,14 +80,14 @@ int findVBST(vbst *vtree,void *v)
 {
 	vbstVal *sought = newVBSTVal(vtree->display,vtree->compare);
 	sought->value = v;
-	if (findBSTNode(vtree->tree,sought))
+	bstNode *temp = findBSTNode(vtree->tree, sought);
+
+	if (temp != NULL)
 	{
-		free(sought);
-		return 1;
+		return ((vbstVal *)(temp->value))->freq;
 	}
 	else
 	{
-		free(sought);
 		return 0;
 	}
 }
@@ -142,3 +142,4 @@ void displayVBST(FILE *fp, vbst *vtree)
 {
 	displayBST(fp,vtree->tree);
 }
+

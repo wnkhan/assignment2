@@ -119,10 +119,20 @@ void insertRBT(rbt *redtree,void *v)
 }
 int findRBT(rbt *rtree, void *val)
 {
-	rbtVal *newVal = newRBTVal(rtree->display,rtree->compare);
-	newVal->value = val;
-	return findBST(rtree->tree,newVal);
+	rbtVal *sought = newRBTVal(rtree->display,rtree->compare);
+	sought->value = val;
+	bstNode *temp = findBSTNode(rtree->tree, sought);
+
+	if (temp != NULL)
+	{
+		return ((rbtVal *)(temp->value))->freq;
+	}
+	else
+	{
+		return 0;
+	}
 }
+
 
 void deleteRBT(rbt *rtree, void *v)
 {
