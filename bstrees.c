@@ -19,14 +19,25 @@ int main(int argc,char *argv[])
 	char *type = argv[1];
 	char *data = argv[2];
 	char *commands = argv[3];
+	char *out = argv[4];
 
-	FILE *dataFile;	
-	FILE *commandFile;
+	FILE *dataFile = NULL;	
+	FILE *commandFile = NULL;
+	FILE *outFile = NULL;
 
-	if (argc != 4)
+	if (argc < 4)
 	{
 		printf("Not enough command line arguments\n");
 	}
+	else if(argc == 5)
+	{
+		outFile = fopen(out,"w");
+	}
+	else
+	{
+		outFile = stdout;
+	}
+
 
 	enum treeType{vanilla,red_black} kind;
 
@@ -86,7 +97,7 @@ int main(int argc,char *argv[])
 				
 				else if (strcmp(word,"s")==0)
 				{
-					displayVBST(stdout,vt);
+					displayVBST(outFile,vt);
 				}
 				// else if (strcmp(word,"f")==0)
 				// {
@@ -94,7 +105,7 @@ int main(int argc,char *argv[])
 				// }
 				else
 				{
-					statisticsVBST(vt,stdout);
+					statisticsVBST(vt,outFile);
 				}
 				word = pullString(commandFile);
 			}
@@ -143,7 +154,7 @@ int main(int argc,char *argv[])
 				
 				else if (strcmp(word,"s")==0)
 				{
-					displayRBT(stdout,rt);
+					displayRBT(outFile,rt);
 				}
 				// else if (strcmp(word,"f")==0)
 				// {
@@ -151,7 +162,7 @@ int main(int argc,char *argv[])
 				// }
 				else
 				{
-					statisticsRBT(rt,stdout);
+					statisticsRBT(rt,outFile);
 				}
 				word = pullString(commandFile);
 			}
@@ -167,6 +178,10 @@ int main(int argc,char *argv[])
 			break;
 	}
 	fclose(dataFile);
+	if (argc == 5)
+	{
+		fclose(outFile);
+	}
 
 
 	

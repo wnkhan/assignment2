@@ -1,88 +1,52 @@
 #include "handlestring.h"
 
-
-void modifystring(char *s)
+//Was having trouble with modifying the strings
+//and was directed to a link for a stack overflow
+//webpage that helped with modifying strings.
+//The modifystring() function is a result of
+//that code.
+void modifystring(char *p)
 {
-	int size = strlen(s);
-	int i = 0;
-	
-	for (i=0; i < size; ++i)
-	{
-		if(isupper(s[i]))
-		{
-			s[i] = s[i] + 32;
-		}
-		else if(isspace(s[i]))
-		{
-			memmove(s+i,s+(i+1),size-i);
-			i--;
-			size--;
-		}
-		else if (isdigit(s[i]))
-		{
-			memmove(s+i,s+(i+1),size-i);
-			i--;
-			size--;
-		}
-		else if(ispunct(s[i]))
-		{
-			memmove(s+i,s+(i+1),size-i);
-			i--;
-			size--;
-		}
-		else if (!isalpha(s[i]))
-		{
-			memmove(s+i,s+(i+1),size-i);
-			i--;
-			size--;
-		}
-	}
+    char *src = p, *dst = p;
+
+    while (*src)
+    {
+    	if (isspace((unsigned char)*src))
+    	{
+    		while(isspace((unsigned char)*src))
+    		{
+    			src++;
+    		}
+    		*dst++ = ' ';
+    	}
+       else if (!isalpha((unsigned char)*src) )
+       {
+          /* Skip this character */
+          src++;
+       }
+       else if (isupper((unsigned char)*src))
+       {
+          /* Make it lowercase */
+          *dst++ = tolower((unsigned char)*src);
+          src++;
+       }
+       else if (src == dst)
+       {
+          /* Increment both pointers without copying */
+          src++;
+          dst++;
+       }
+       else
+       {
+          /* Copy character */
+          *dst++ = *src++;
+       }
+    }
+
+    *dst = 0;
 }
 
-char* modifyphrase(char *s)
-{
-	int size = strlen(s);
-	int i = 0;
-	char *temp = NULL;
-	char *temp1 = NULL;
-	char *space = " ";
-	
-	
-	for (i=0; i < size; ++i)
-	{
-		if(isupper(s[i]))
-		{
-			s[i] = s[i] + 32;
-		}
-		else if(isspace(s[i]))
-		{
-			
-			int count = i;
-			while(isspace(s[count]))
-			{
-				count++;
-			}
-			temp = malloc(sizeof(strlen(s)-strlen(s+i)));
-			strncpy(temp, s, i);
 
-			temp1 = malloc(sizeof(strlen(s+count)));
-			strncpy(temp1, s+count, strlen(s+count));
-
-			s = malloc(sizeof(strlen(temp1)+strlen(temp)));
-			strcpy(s,temp);
-			strcat(s,space);
-			strcat(s,temp1);
-
-		}
-		else if(ispunct(s[i]))
-		{
-			memmove(s+i,s+(i+1),size-i);
-			i--;
-		}
-		size = strlen(s);
-	}
-	return s;
-}
 
 char *pullString(FILE *fp)
 {
@@ -91,16 +55,17 @@ char *pullString(FILE *fp)
 	{
 		
 		read = readString(fp);
-		read = modifyphrase(read);
+		modifystring(read);
 	}
 	else
 	{
 		
 		read = readToken(fp);
-		if (read != NULL)
+		if (read!=NULL)
 		{
 			modifystring(read);
 		}
+		
 		
 	}
 	return read;

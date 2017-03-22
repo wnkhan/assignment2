@@ -232,18 +232,22 @@ void displayBST(FILE *fp,bst *tree) { //displays tree, calls display function to
 
 				if(tree->compare(n->value, n->parent->value)<0)
 				{
-					fprintf(fp, ")-l\t");
+					fprintf(fp, ")-l");
 				}
 				else
 				{
-					fprintf(fp, ")-r\t");
+					fprintf(fp, ")-r");
 				}
 			}
 			else
 			{
 				fprintf(fp, "(");
 				tree->display(fp,n->parent->value);
-				fprintf(fp, ")-\t");
+				fprintf(fp, ")-");
+			}
+			if (peekQueue(q)!= NULL)
+			{
+				fprintf(fp," ");
 			}
 			
 			if(n->left != NULL) enqueue(q,n->left);
