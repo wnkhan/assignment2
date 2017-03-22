@@ -4,5 +4,5 @@
 3: =" tests "(" all good students ")-r
 Words/Phrases: 5
 Nodes: 5
-Min depth = 2
-Max depth = 4
+Minimum depth: 2
+Maximum depth: 4
