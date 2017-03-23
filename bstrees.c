@@ -12,8 +12,6 @@
 #include "scanner.h"
 
 
-#include "max_min.h"
-
 int main(int argc,char *argv[])
 {
 

@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "queue.h"
-// #include "integer.h"
 #include "bst.h"
-#include "max_min.h"
+// #include "max_min.h"
+
+int maxDepth(bstNode *);
+int minDepth(bstNode *);
 
 bst *newBST(void (*d)(FILE *,void *),int (*c)(void *,void *))
 {
@@ -257,3 +259,46 @@ void displayBST(FILE *fp,bst *tree) { //displays tree, calls display function to
 	}
 }
 
+int maxDepth(bstNode *node)
+{
+	if(node == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		int ld = maxDepth(node->left);
+		int rd = maxDepth(node->right);
+
+		if (ld > rd)
+		{
+			return (ld+1);
+		}
+		else 
+		{
+			return (rd+1);
+		}
+	}
+}
+
+int minDepth(bstNode *node)
+{
+	if(node == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		int ld = minDepth(node->left);
+		int rd = minDepth(node->right);
+
+		if (ld < rd)
+		{
+			return (ld+1);
+		}
+		else 
+		{
+			return (rd+1);
+		}
+	}
+}

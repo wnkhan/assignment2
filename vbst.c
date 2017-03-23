@@ -5,7 +5,7 @@
 #include "integer.h"
 #include "bst.h"
 #include "vbst.h"
-#include "max_min.h"
+// #include "max_min.h"
 
 typedef struct vbstVal
     {

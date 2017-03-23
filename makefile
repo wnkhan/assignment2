@@ -1,8 +1,8 @@
 FLAGS = -Wall -Wextra -std=c99
 
-bstrees: bstrees.o bst.o vbst.o rbt.o handlestring.o max_min.o scanner.o comparator.o integer.o real.o string.o sll.o queue.o
-	gcc $(FLAGS) bstrees.o bst.o vbst.o rbt.o handlestring.o max_min.o scanner.o comparator.o integer.o real.o string.o sll.o queue.o -o bstrees
-bstrees.o: bstrees.c bst.h vbst.h comparator.h integer.h real.h string.h handlestring.h max_min.h
+bstrees: bstrees.o bst.o vbst.o rbt.o handlestring.o scanner.o comparator.o integer.o real.o string.o sll.o queue.o
+	gcc $(FLAGS) bstrees.o bst.o vbst.o rbt.o handlestring.o scanner.o comparator.o integer.o real.o string.o sll.o queue.o -o bstrees
+bstrees.o: bstrees.c bst.h vbst.h comparator.h integer.h real.h string.h handlestring.h
 	gcc $(FLAGS) -c bstrees.c
 bst.o: bst.c bst.h
 	gcc $(FLAGS) -c bst.c
@@ -26,8 +26,8 @@ queue.o: queue.c queue.h sll.h
 	gcc $(FLAGS) -c queue.c
 handlestring.o: handlestring.c handlestring.h scanner.h string.h
 	gcc $(FLAGS) -c handlestring.c
-max_min.o: max_min.c max_min.h bst.h
-	gcc $(FLAGS) -c max_min.c
+# max_min.o: max_min.c max_min.h bst.h
+# 	gcc $(FLAGS) -c max_min.c
 
 cleanbuild:
 	clear
