@@ -53,17 +53,14 @@ char *pullString(FILE *fp)
 	char *read=NULL;
 	if (stringPending(fp))
 	{
-
+		
 		read = readString(fp);
- 
 		modifystring(read);
-
 	}
 	else
 	{
 		
 		read = readToken(fp);
-
 		if (read!=NULL)
 		{
 			modifystring(read);

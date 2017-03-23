@@ -181,8 +181,8 @@ void statisticsBST(bst *tree,FILE *fp)
 	int min = minDepth(n);
 	int max = maxDepth(n);
 	
-	fprintf(fp, "Min depth = %d\n", min);
-	fprintf(fp, "Max depth = %d\n", max);
+	fprintf(fp, "Minimum depth: %d\n", min);
+	fprintf(fp, "Maximum depth: %d\n", max);
 	
 }
 

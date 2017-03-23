@@ -10,7 +10,7 @@ str
 *newString(char *x)
     {
     str *p = malloc(sizeof(str));
-    p->value = malloc(sizeof(strlen(x)));
+    p->value = malloc(strlen(x)+1);
     strcpy(p->value, x);
     return p;
     }
