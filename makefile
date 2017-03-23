@@ -34,7 +34,7 @@ cleanbuild:
 	make clean
 	make
 clean:
-	rm -f bstrees.o bst.o vbst.o rbt.o handlestring.o max_min.o scanner.o comparator.o integer.o real.o string.o sll.o queue.o bstrees
+	rm -f bstrees.o bst.o vbst.o rbt.o handlestring.o scanner.o comparator.o integer.o real.o string.o sll.o queue.o bstrees
 
 test: ./bstrees
 	
