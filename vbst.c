@@ -140,6 +140,11 @@ void statisticsVBST(vbst *vtree, FILE *fp)
 
 void displayVBST(FILE *fp, vbst *vtree)
 {
+	if(vtree->size == 0)
+	{
+		fprintf(fp,"0:\n");
+	}
+	else
 	displayBST(fp,vtree->tree);
 }
 

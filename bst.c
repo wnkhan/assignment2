@@ -183,9 +183,9 @@ void statisticsBST(bst *tree,FILE *fp)
 	int min = minDepth(n);
 	int max = maxDepth(n);
 	
+	fprintf(fp, "Nodes: %d\n",tree->size);	
 	fprintf(fp, "Minimum depth: %d\n", min);
 	fprintf(fp, "Maximum depth: %d\n", max);
-	
 }
 
 void displayBST(FILE *fp,bst *tree) { //displays tree, calls display function to display node value
