@@ -133,7 +133,6 @@ int wordsVBST(vbst *vtree)  //Fix Me!!!!
 void statisticsVBST(vbst *vtree, FILE *fp)
 {
 	fprintf(fp,"Words/Phrases: %d\n", vtree->words);
-	fprintf(fp,"Nodes: %d\n", vtree->size);
 	statisticsBST(vtree->tree,fp);
 
 }
