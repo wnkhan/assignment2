@@ -1,8 +1,8 @@
-/mnt/c/Users/genghis/CS201/assignment2
-Fri Mar 31 16:52:31 DST 2017
-bst.c		handlestring.h	rbt.c	   sll.c     wnkhan@crimson.ua.edu
-bst.h		integer.c	rbt.h	   sll.h     WORKING
-bstrees.c	integer.h	real.c	   string.c
-comparator.c	makefile	real.h	   string.h
-comparator.h	queue.c		scanner.c  vbst.c
-handlestring.c	queue.h		scanner.h  vbst.h
+/home/genghis/CS201/assignment2
+Fri Apr  7 12:26:04 CDT 2017
+bst.c	      data	      makefile	real.h	   string.h
+bst.h	      handlestring.c  queue.c	scanner.c  vbst.c
+bstrees.c     handlestring.h  queue.h	scanner.h  vbst.h
+commands      integer.c       rbt.c	sll.c	   wnkhan@crimson.ua.edu
+comparator.c  integer.h       rbt.h	sll.h	   WORKING
+comparator.h  lusth_testing   real.c	string.c

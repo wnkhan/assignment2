@@ -100,10 +100,10 @@ void deleteVBST(vbst *vtree, void *v)
 
 	if (temp == NULL)
 	{
-		printf("Value \"");	
-		vbstDisplay(stdout,newVal->value);
-		printf("\"");
-		printf(" not found\n");
+		fprintf(stderr,"Value \"");	
+		newVal->display(stderr,newVal->value);
+		fprintf(stderr,"\"");
+		fprintf(stderr," not found\n");
 	}
 	else if (((vbstVal *)(temp->value))->freq>1)
 	{
